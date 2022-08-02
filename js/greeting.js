@@ -1,24 +1,25 @@
 const GoodTimeGreeting = document.querySelector('.greeting');
 const yourInputName = document.querySelector('.name')
 function getTimeOfDay() {
-
   const date = new Date();
   const hours = date.getHours();
   let timeOfDay;
   if (hours < 6) {
-    timeOfDay = 'Good night,'
+    timeOfDay = 'night'
   }
   else if (hours >= 6 && hours < 12) {
-    timeOfDay = 'Good morning,'
+    timeOfDay = 'morning'
   }
   else if (hours >= 12 && hours < 18) {
-    timeOfDay = 'Good afternoon,'
+    timeOfDay = 'afternoon'
   }
   else if (hours >= 18 && hours < 24) {
-    timeOfDay = 'Good evening,'
+    timeOfDay = 'evening'
   }
-  GoodTimeGreeting.textContent = timeOfDay;
+
+  GoodTimeGreeting.textContent = `Good ${timeOfDay},`;
   setTimeout(getTimeOfDay, 1000)
+  return timeOfDay;
 }
 getTimeOfDay()
 
