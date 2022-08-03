@@ -11,7 +11,6 @@ function setBg() {
     body.style.backgroundImage = `url(${img.src})`
   })
 }
-setBg()
 
 function getSlidePrev() {
   bgNum = (bgNum - 1).toString().padStart(2, '0');
