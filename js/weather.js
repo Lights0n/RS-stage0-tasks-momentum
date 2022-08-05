@@ -27,7 +27,6 @@ async function getWeather() {
     humidity.textContent = ''
     temperature.textContent = ''
   }
-
   weatherIcon.className = 'weather-icon owf';
   weatherIcon.classList.add(`owf-${data.weather[0].id}`);
   temperature.textContent = `${Math.round(data.main.temp)}°C`;
@@ -45,8 +44,7 @@ function setLocalStorageCity() {
 function getLocalStorageCity() {
   if (localStorage.getItem('cityVal')) {
     city.value = localStorage.getItem('cityVal')
-  }
-  else {
+  }else {
     city.value = 'Minsk'
   }
 }

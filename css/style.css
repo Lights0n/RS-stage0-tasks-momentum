@@ -158,9 +158,12 @@ body {
   background-color: transparent;
 }
 
-.city::placeholder {
-  font-size: 20px;
-  color: #fff;
+input::placeholder {
+  font-size: inherit;
+  width: 100%;
+  overflow: visible;
+  display: block;
+  color: rgb(255, 255, 255);
   opacity: 0.6;
 }
 
@@ -251,8 +254,33 @@ body {
   padding: 20px;
 }
 
+.private-checkbox {
+  transform: scale(1.7);
+
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.private-checkbox-label {
+  margin: 0px 0px 0px 7px;
+  font-size: 24px;
+  font-weight: normal;
+}
+
+.quote {
+  /* padding: 0px 0px 20px 0px; */
+  font-size: 32px;
+  line-height: 120%;
+  font-weight: 400;
+}
+
+.author {
+  font-size: 28px;
+  line-height: 120%;
+}
+
 .change-quote {
-  margin-bottom: 30px;
+  margin: 15px 0;
   background-image: url("../assets/svg/reload.svg");
 }
 
@@ -272,7 +300,10 @@ body {
 
   .greeting-container {
     min-height: 40px;
-    font-size: 32px;
+    font-size: 28px;
+    line-height: 120%;
+    display: flex;
+    flex-direction: column;
   }
 
   .greeting {
@@ -282,5 +313,18 @@ body {
   .name {
     font-size: 32px;
     padding: 5px;
+  }
+  .footer-upper-cnt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  .quote {
+    font-size: 22px;
+  }
+  .author {
+    font-size: 20px;
+    line-height: 120%;
   }
 }
