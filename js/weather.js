@@ -5,24 +5,39 @@ const weatherDescription = document.querySelector('.weather-description');
 const windSpeed = document.querySelector('.wind');
 const humidity = document.querySelector('.humidity');
 
-city.value = 'Minsk'
-
 async function getWeather() {
-  // if (city.value == '') {
-  //   city.value = 'Minsk'
-  // }
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value.trim()}&lang=en&appid=6837c3e245014d18afbde35e9570ecb2&units=metric`;
+  let lang = 'en'
+  let url
+  if (langRu.checked) {
+    lang = 'ru'
+    url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value.trim()}&lang=${lang}&appid=47ef5350608581ff2e77de126739e049&units=metric`;
+  }
+
+  else if (langEng.checked) {
+    lang = 'en'
+    url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value.trim()}&lang=${lang}&appid=47ef5350608581ff2e77de126739e049&units=metric`;
+  }
   const res = await fetch(url);
   const data = await res.json();
   let errorCode = data.cod;
-  
+
   if (errorCode == '404') {
-    weatherDescription.textContent = `Sorry, city "${city.value}" not found :(`
+    if (langEng.checked) {
+      weatherDescription.textContent = `Sorry, city "${city.value}" not found :(`
+    }
+    else if (langRu.checked) {
+      weatherDescription.textContent = `Извините, город "${city.value}" не найден :(`
+    }
     windSpeed.textContent = ''
     humidity.textContent = ''
     temperature.textContent = ''
   } else if (city.value.trim() == '') {
-    weatherDescription.textContent = `Sorry, empty input :( `
+    if (langEng.checked) {
+      weatherDescription.textContent = `Sorry, empty input :( `
+    }
+    else if (langRu.checked) {
+      weatherDescription.textContent = `Извините, пустой ввод :( `
+    }
     windSpeed.textContent = ''
     humidity.textContent = ''
     temperature.textContent = ''
@@ -31,11 +46,20 @@ async function getWeather() {
   weatherIcon.classList.add(`owf-${data.weather[0].id}`);
   temperature.textContent = `${Math.round(data.main.temp)}°C`;
   weatherDescription.textContent = data.weather[0].description;
-  windSpeed.textContent = `Wind speed: ${Math.round(data.wind.speed)} m/s`;
-  humidity.textContent = `Humidity: ${Math.round(data.main.humidity)}%`
+  if (langEng.checked) {
+    windSpeed.textContent = `Wind speed: ${Math.round(data.wind.speed)} m/s`;
+    humidity.textContent = `Humidity: ${Math.round(data.main.humidity)}%`
+    city.placeholder = 'Enter city'
+  }
 
-  // console.log(data.main.humidity);
+  if (langRu.checked) {
+    windSpeed.textContent = `Скорость ветра: ${Math.round(data.wind.speed)} м/с`;
+    humidity.textContent = `Влажность: ${Math.round(data.main.humidity)}%`
+    city.placeholder = 'Введите город'
+  }
+  city.value = data.name
 }
+
 
 function setLocalStorageCity() {
   localStorage.setItem('cityVal', city.value);
@@ -44,8 +68,14 @@ function setLocalStorageCity() {
 function getLocalStorageCity() {
   if (localStorage.getItem('cityVal')) {
     city.value = localStorage.getItem('cityVal')
-  }else {
-    city.value = 'Minsk'
+  } else {
+    // Город по умолчанию
+    if (langRu.checked) {
+      city.value = 'Минск'
+    }
+    else if (langEng.checked) {
+      city.value = 'Minsk'
+    }
   }
 }
 
@@ -56,4 +86,7 @@ window.addEventListener('load', () => {
 })
 
 city.addEventListener('change', getWeather)
+
+langRu.addEventListener('change', getWeather)
+langEng.addEventListener('change', getWeather)
 // localStorage.clear();

@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="assets/favicon.ico" rel="shortcut icon" />
   <link rel="stylesheet" href="css/owfont-regular.css" />
   <link rel="stylesheet" href="css/style.css" />
@@ -17,7 +18,19 @@
         <button class="play-prev player-icon"></button>
         <button class="play player-icon"></button>
         <button class="play-next player-icon"></button>
+        <button class="play-volume player-icon"></button>
+        <input class="player-volume-range" type="range" min="0" max="100" value="20" step="1" name="player-volume">
       </div>
+      <div class="player__track-cnt">
+        <div class="player__track-name">Music is here! Just choose for your mood!</div>
+        <!-- <div class="player__track-author"> Unknown</div> -->
+      </div>
+      <div class="player__time">
+        <div class="player__time-current">0:00</div>
+        <input class="player-song-range" type="range" min="0" max="300" value="0" step="1" name="song-range">
+        <div class="player__time-length">2:53</div>
+      </div>
+
       <ul class="play-list"></ul>
     </div>
     <div class="weather">
@@ -45,27 +58,123 @@
     </div>
   </main>
   <footer class="footer">
-    <div  class="footer-upper-cnt">
-      <form>
-        <input id="private-checkbox" class="private-checkbox" name="checkbox" type="checkbox">
-        <label class="private-checkbox-label" for="private-checkbox">Private qoutes list</label>
-
-      </form>
-      <button class="change-quote"></button>
+    <button class="footer__todo"></button>
+    <div class="footer__quote">
+      <div class="footer-upper-cnt">
+        <form>
+          <input id="private-checkbox" class="private-checkbox" name="checkbox" type="checkbox">
+          <label class="private-checkbox-label" for="private-checkbox">Private qoutes list</label>
+        </form>
+        <button class="change-quote"></button>
+      </div>
+      <div>
+        <div class="quote"></div>
+        <div class="author"></div>
+      </div>
+    </div>
+    <div class="footer__links-settings">
+      <a href="https://rs.school/js/" target="_blank" class="footer__course">
+        <img src="assets/svg/rs_school_js.svg" alt="course-logo">
+      </a>
+      <div class="footer__year">2022</div>
+      <a href="https://github.com/Lights0n" target="_blank" class="footer__git">
+        <img src="assets/svg/footer-git.svg" alt="course-logo">
+      </a>
+      <button class="footer__settings"></button>
     </div>
 
 
-    <div>
-      <div class="quote"></div>
-      <div class="author"></div>
-    </div>
   </footer>
 
+  <div class="footer__settings-pup settings-pup">
+    <div class="settings-pup__body">
+      <ul class="settings-pup__list">
+        <li class="settings-pup__list-lang set-name">
+          <input type='radio' name='set-list-radio' id='radio-lang' checked />
+          <label for='radio-lang'>Language</label>
+        </li>
+        <li class="settings-pup__list-photo set-name">
+          <input type='radio' name='set-list-radio' id='radio-photo' />
+          <label for='radio-photo'>Photo source</label>
+        </li>
+        <li class="settings-pup__list-elements set-name">
+          <input type='radio' name='set-list-radio' id='radio-elems' />
+          <label for='radio-elems'>Elements</label>
+        </li>
+      </ul>
+      <div class="settings-pup__main">
+        <div class="settings-pup__lang main-set visable">
+          <form class="form-langs">
+            <label>
+              <input type="radio" name="langueage" value="eng" id="lang-eng" checked>
+              English
+            </label>
+            <br>
+            <label>
+              <input type="radio" name="langueage" value="bel" id="lang-ru">
+              Русский
+            </label>
+          </form>
+        </div>
+        <ul class="settings-pup__img-src main-set ">
+          <li class="main-set__git">
+            <input type='radio' name='img-src-radio' id="radio-git" checked />
+            <label for='radio-git'>Github</label>
+          </li>
+          <li class="main-set__unsplash">
+            <input type='radio' name='img-src-radio' id="radio-unslash" />
+            <label for='radio-unslash'>Unsplash API</label>
+          </li>
+          <li class="main-set__flicker">
+            <input type='radio' name='img-src-radio' id="radio-flicker" />
+            <label for='radio-flicker'>Flickr API</label>
+          </li>
+          <input id="tag-img-search" type="search" placeholder="choose pics wisely">
+        </ul>
+        <ul class="settings-pup__hide main-set ">
+          <li class="pup__hide-time">
+            <input type='checkbox' id='checkbox-time' checked />
+            <label for='checkbox-time'>Time</label>
+          </li>
+          <li class="pup__hide-date">
+            <input type='checkbox' id='checkbox-date' checked />
+            <label for='checkbox-date'>Date</label>
+          </li>
+          <li class="pup__hide-greeting">
+            <input type='checkbox' id='checkbox-greeting' checked />
+            <label for='checkbox-greeting'>Greeting</label>
+          </li>
+          <li class="pup__hide-quotes">
+            <input type='checkbox' id='checkbox-quotes' checked />
+            <label for='checkbox-quotes'>Quotes</label>
+          </li>
+          <li class="pup__hide-weather">
+            <input type='checkbox' id='checkbox-weather' checked />
+            <label for='checkbox-weather'>Weather</label>
+          </li>
+          <li class="pup__hide-player">
+            <input type='checkbox' id='checkbox-player' checked />
+            <label for='checkbox-player'>Audio player</label>
+          </li>
+          <li class="pup__hide-todo">
+            <input type='checkbox' id='checkbox-todo' checked />
+            <label for='checkbox-todo'>Todo</label>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <script src="js/languages.js"></script>
   <script src="js/timeCalendar.js"></script>
   <script src="js/greeting.js"></script>
   <script src="js/bgiSlider.js"></script>
   <script src="js/weather.js"></script>
   <script src="js/quote.js"></script>
+  <script src="js/images-API.js"></script>
+  <script src="js/settings.js"></script>
+
+  <script type="module" src="js/audio.js"></script>
+
 </body>
 
 </html>

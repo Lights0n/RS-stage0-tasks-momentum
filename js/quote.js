@@ -5,7 +5,16 @@ const checkbox = document.querySelector("input[name=checkbox]");
 
 let quotesListtoggler = false
 async function getQuotes() {
-  let quotes = 'assets/json/quotes.json';
+
+  let quotes
+  if (langRu.checked) {
+    quotes = 'assets/json/quotes-ru.json';
+  }
+
+  else if (langEng.checked) {
+    quotes = 'assets/json/quotes.json';
+  }
+
   if (quotesListtoggler == true) {
     quotes = 'assets/json/quotesMain.json';
   }
@@ -15,7 +24,7 @@ async function getQuotes() {
 
   const quotesList = Object.values(data)[0];
   let randQuoteIndex = Math.trunc(Math.random(0) * quotesList.length)
-  quote.textContent = `${randQuoteIndex + 1} "${Object.values(quotesList[randQuoteIndex])[0]}"`
+  quote.textContent = `"${Object.values(quotesList[randQuoteIndex])[0]}"`
   author.textContent = Object.values(quotesList[randQuoteIndex])[1]
 }
 getQuotes();
@@ -32,4 +41,9 @@ checkbox.addEventListener('change', function () {
   }
 });
 
+
 changeQuoteBtn.addEventListener('click', getQuotes)
+
+langRu.addEventListener('click', getQuotes)
+
+langEng.addEventListener('click', getQuotes)

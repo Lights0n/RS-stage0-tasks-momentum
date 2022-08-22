@@ -1,9 +1,13 @@
 const timeCnt = document.querySelector('.time')
+
+// const langRu = document.querySelector('#lang-ru');
+// const langEng = document.querySelector('#lang-eng');
+
 function showTime() {
   const date = new Date();
   const currentTime = date.toLocaleTimeString()
   timeCnt.textContent = currentTime;
-  setTimeout(showTime, 1000);
+  let timerId = setTimeout(() => showTime(), 1000);
   showDate()
 }
 
@@ -20,10 +24,25 @@ function showDate() {
     // minute: 'numeric',
     // second: "numeric"
   }
-  const currentDate = date.toLocaleDateString("en-US", options);
-  dateCnt.textContent = currentDate;
+
+  // let currentDate = date.toLocaleDateString("ru-RU", options);
+  // ______LANGUAGE______
+  if (langRu.checked) {
+    let currentDate = date.toLocaleDateString("ru", options);
+    dateCnt.textContent = currentDate;
+  }
+
+  if (langEng.checked) {
+    let currentDate = date.toLocaleDateString("en-US", options);
+    dateCnt.textContent = currentDate;
+  }
   setTimeout(showDate, 1000);
 }
 showTime()
+
+
+
+
+// export default showTime(togg);
 
 

@@ -1,0 +1,4 @@
+
+tagImgSearch.addEventListener('change', setBg)
+
+
