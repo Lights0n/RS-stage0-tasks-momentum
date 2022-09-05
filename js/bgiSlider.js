@@ -9,7 +9,8 @@ function setBg() {
 
   if (gitRadio.checked) {
     imageTag = getTimeOfDay()
-    img.src = `https://raw.githubusercontent.com/Lights0n/stage1-tasks/assets/images/${imageTag}/${bgNum}.jpg`
+    img.src = `https://raw.githubusercontent.com/Lights0n/stage1-tasks-stage0/assets/images/${imageTag}/${bgNum}.jpg`
+
   }
   else if (unslashRadio.checked) {
     getUnsplashImage()
